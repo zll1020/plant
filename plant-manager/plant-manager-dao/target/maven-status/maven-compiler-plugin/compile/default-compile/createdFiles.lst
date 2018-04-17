@@ -1,0 +1,9 @@
+cust\plant\interfaces\mapper\PlantMapper.class
+cust\plant\interfaces\mapper\PlantstatusMapper.class
+cust\plant\interfaces\mapper\GoodinfoMapper.class
+cust\plant\interfaces\mapper\ThresholdinfoMapper.class
+cust\plant\interfaces\mapper\OrderinfoMapper.class
+cust\plant\interfaces\mapper\UserinfoMapper.class
+cust\plant\interfaces\mapper\UserplantinfoMapper.class
+cust\plant\interfaces\mapper\PlantinfoMapper.class
+cust\plant\interfaces\mapper\PlanttypeMapper.class

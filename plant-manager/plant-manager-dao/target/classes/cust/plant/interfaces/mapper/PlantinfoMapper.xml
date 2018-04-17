@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cust.plant.interfaces.mapper.PlantinfoMapper" >
+  <resultMap id="BaseResultMap" type="cust.plant.manager.pojo.Plantinfo" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="plantID" property="plantid" jdbcType="INTEGER" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
+    <result column="soilTemp" property="soiltemp" jdbcType="REAL" />
+    <result column="soilHum" property="soilhum" jdbcType="REAL" />
+    <result column="airTemp" property="airtemp" jdbcType="REAL" />
+    <result column="airHum" property="airhum" jdbcType="REAL" />
+    <result column="light" property="light" jdbcType="REAL" />
+    <result column="co2" property="co2" jdbcType="REAL" />
+    <result column="picture" property="picture" jdbcType="VARCHAR" />
+    <result column="video" property="video" jdbcType="VARCHAR" />
+    <result column="growStatusID" property="growstatusid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, plantID, time, soilTemp, soilHum, airTemp, airHum, light, co2, picture, video, 
+    growStatusID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cust.plant.manager.pojo.PlantinfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from plantinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from plantinfo
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from plantinfo
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="cust.plant.manager.pojo.PlantinfoExample" >
+    delete from plantinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cust.plant.manager.pojo.Plantinfo" >
+    insert into plantinfo (ID, plantID, time, 
+      soilTemp, soilHum, airTemp, 
+      airHum, light, co2, picture, 
+      video, growStatusID)
+    values (#{id,jdbcType=INTEGER}, #{plantid,jdbcType=INTEGER}, #{time,jdbcType=TIMESTAMP}, 
+      #{soiltemp,jdbcType=REAL}, #{soilhum,jdbcType=REAL}, #{airtemp,jdbcType=REAL}, 
+      #{airhum,jdbcType=REAL}, #{light,jdbcType=REAL}, #{co2,jdbcType=REAL}, #{picture,jdbcType=VARCHAR}, 
+      #{video,jdbcType=VARCHAR}, #{growstatusid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="cust.plant.manager.pojo.Plantinfo" >
+    insert into plantinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="plantid != null" >
+        plantID,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="soiltemp != null" >
+        soilTemp,
+      </if>
+      <if test="soilhum != null" >
+        soilHum,
+      </if>
+      <if test="airtemp != null" >
+        airTemp,
+      </if>
+      <if test="airhum != null" >
+        airHum,
+      </if>
+      <if test="light != null" >
+        light,
+      </if>
+      <if test="co2 != null" >
+        co2,
+      </if>
+      <if test="picture != null" >
+        picture,
+      </if>
+      <if test="video != null" >
+        video,
+      </if>
+      <if test="growstatusid != null" >
+        growStatusID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="plantid != null" >
+        #{plantid,jdbcType=INTEGER},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="soiltemp != null" >
+        #{soiltemp,jdbcType=REAL},
+      </if>
+      <if test="soilhum != null" >
+        #{soilhum,jdbcType=REAL},
+      </if>
+      <if test="airtemp != null" >
+        #{airtemp,jdbcType=REAL},
+      </if>
+      <if test="airhum != null" >
+        #{airhum,jdbcType=REAL},
+      </if>
+      <if test="light != null" >
+        #{light,jdbcType=REAL},
+      </if>
+      <if test="co2 != null" >
+        #{co2,jdbcType=REAL},
+      </if>
+      <if test="picture != null" >
+        #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="video != null" >
+        #{video,jdbcType=VARCHAR},
+      </if>
+      <if test="growstatusid != null" >
+        #{growstatusid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cust.plant.manager.pojo.PlantinfoExample" resultType="java.lang.Integer" >
+    select count(*) from plantinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update plantinfo
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.plantid != null" >
+        plantID = #{record.plantid,jdbcType=INTEGER},
+      </if>
+      <if test="record.time != null" >
+        time = #{record.time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.soiltemp != null" >
+        soilTemp = #{record.soiltemp,jdbcType=REAL},
+      </if>
+      <if test="record.soilhum != null" >
+        soilHum = #{record.soilhum,jdbcType=REAL},
+      </if>
+      <if test="record.airtemp != null" >
+        airTemp = #{record.airtemp,jdbcType=REAL},
+      </if>
+      <if test="record.airhum != null" >
+        airHum = #{record.airhum,jdbcType=REAL},
+      </if>
+      <if test="record.light != null" >
+        light = #{record.light,jdbcType=REAL},
+      </if>
+      <if test="record.co2 != null" >
+        co2 = #{record.co2,jdbcType=REAL},
+      </if>
+      <if test="record.picture != null" >
+        picture = #{record.picture,jdbcType=VARCHAR},
+      </if>
+      <if test="record.video != null" >
+        video = #{record.video,jdbcType=VARCHAR},
+      </if>
+      <if test="record.growstatusid != null" >
+        growStatusID = #{record.growstatusid,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update plantinfo
+    set ID = #{record.id,jdbcType=INTEGER},
+      plantID = #{record.plantid,jdbcType=INTEGER},
+      time = #{record.time,jdbcType=TIMESTAMP},
+      soilTemp = #{record.soiltemp,jdbcType=REAL},
+      soilHum = #{record.soilhum,jdbcType=REAL},
+      airTemp = #{record.airtemp,jdbcType=REAL},
+      airHum = #{record.airhum,jdbcType=REAL},
+      light = #{record.light,jdbcType=REAL},
+      co2 = #{record.co2,jdbcType=REAL},
+      picture = #{record.picture,jdbcType=VARCHAR},
+      video = #{record.video,jdbcType=VARCHAR},
+      growStatusID = #{record.growstatusid,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cust.plant.manager.pojo.Plantinfo" >
+    update plantinfo
+    <set >
+      <if test="plantid != null" >
+        plantID = #{plantid,jdbcType=INTEGER},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="soiltemp != null" >
+        soilTemp = #{soiltemp,jdbcType=REAL},
+      </if>
+      <if test="soilhum != null" >
+        soilHum = #{soilhum,jdbcType=REAL},
+      </if>
+      <if test="airtemp != null" >
+        airTemp = #{airtemp,jdbcType=REAL},
+      </if>
+      <if test="airhum != null" >
+        airHum = #{airhum,jdbcType=REAL},
+      </if>
+      <if test="light != null" >
+        light = #{light,jdbcType=REAL},
+      </if>
+      <if test="co2 != null" >
+        co2 = #{co2,jdbcType=REAL},
+      </if>
+      <if test="picture != null" >
+        picture = #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="video != null" >
+        video = #{video,jdbcType=VARCHAR},
+      </if>
+      <if test="growstatusid != null" >
+        growStatusID = #{growstatusid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cust.plant.manager.pojo.Plantinfo" >
+    update plantinfo
+    set plantID = #{plantid,jdbcType=INTEGER},
+      time = #{time,jdbcType=TIMESTAMP},
+      soilTemp = #{soiltemp,jdbcType=REAL},
+      soilHum = #{soilhum,jdbcType=REAL},
+      airTemp = #{airtemp,jdbcType=REAL},
+      airHum = #{airhum,jdbcType=REAL},
+      light = #{light,jdbcType=REAL},
+      co2 = #{co2,jdbcType=REAL},
+      picture = #{picture,jdbcType=VARCHAR},
+      video = #{video,jdbcType=VARCHAR},
+      growStatusID = #{growstatusid,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

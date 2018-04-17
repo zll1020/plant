@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cust.plant.interfaces.mapper.ThresholdinfoMapper" >
+  <resultMap id="BaseResultMap" type="cust.plant.manager.pojo.Thresholdinfo" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="TypeID" property="typeid" jdbcType="INTEGER" />
+    <result column="ParamName" property="paramname" jdbcType="VARCHAR" />
+    <result column="hightLevel" property="hightlevel" jdbcType="REAL" />
+    <result column="lowLevel" property="lowlevel" jdbcType="REAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, TypeID, ParamName, hightLevel, lowLevel
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cust.plant.manager.pojo.ThresholdinfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from thresholdinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from thresholdinfo
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from thresholdinfo
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="cust.plant.manager.pojo.ThresholdinfoExample" >
+    delete from thresholdinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cust.plant.manager.pojo.Thresholdinfo" >
+    insert into thresholdinfo (ID, TypeID, ParamName, 
+      hightLevel, lowLevel)
+    values (#{id,jdbcType=INTEGER}, #{typeid,jdbcType=INTEGER}, #{paramname,jdbcType=VARCHAR}, 
+      #{hightlevel,jdbcType=REAL}, #{lowlevel,jdbcType=REAL})
+  </insert>
+  <insert id="insertSelective" parameterType="cust.plant.manager.pojo.Thresholdinfo" >
+    insert into thresholdinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="typeid != null" >
+        TypeID,
+      </if>
+      <if test="paramname != null" >
+        ParamName,
+      </if>
+      <if test="hightlevel != null" >
+        hightLevel,
+      </if>
+      <if test="lowlevel != null" >
+        lowLevel,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="typeid != null" >
+        #{typeid,jdbcType=INTEGER},
+      </if>
+      <if test="paramname != null" >
+        #{paramname,jdbcType=VARCHAR},
+      </if>
+      <if test="hightlevel != null" >
+        #{hightlevel,jdbcType=REAL},
+      </if>
+      <if test="lowlevel != null" >
+        #{lowlevel,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cust.plant.manager.pojo.ThresholdinfoExample" resultType="java.lang.Integer" >
+    select count(*) from thresholdinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update thresholdinfo
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.typeid != null" >
+        TypeID = #{record.typeid,jdbcType=INTEGER},
+      </if>
+      <if test="record.paramname != null" >
+        ParamName = #{record.paramname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hightlevel != null" >
+        hightLevel = #{record.hightlevel,jdbcType=REAL},
+      </if>
+      <if test="record.lowlevel != null" >
+        lowLevel = #{record.lowlevel,jdbcType=REAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update thresholdinfo
+    set ID = #{record.id,jdbcType=INTEGER},
+      TypeID = #{record.typeid,jdbcType=INTEGER},
+      ParamName = #{record.paramname,jdbcType=VARCHAR},
+      hightLevel = #{record.hightlevel,jdbcType=REAL},
+      lowLevel = #{record.lowlevel,jdbcType=REAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cust.plant.manager.pojo.Thresholdinfo" >
+    update thresholdinfo
+    <set >
+      <if test="typeid != null" >
+        TypeID = #{typeid,jdbcType=INTEGER},
+      </if>
+      <if test="paramname != null" >
+        ParamName = #{paramname,jdbcType=VARCHAR},
+      </if>
+      <if test="hightlevel != null" >
+        hightLevel = #{hightlevel,jdbcType=REAL},
+      </if>
+      <if test="lowlevel != null" >
+        lowLevel = #{lowlevel,jdbcType=REAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cust.plant.manager.pojo.Thresholdinfo" >
+    update thresholdinfo
+    set TypeID = #{typeid,jdbcType=INTEGER},
+      ParamName = #{paramname,jdbcType=VARCHAR},
+      hightLevel = #{hightlevel,jdbcType=REAL},
+      lowLevel = #{lowlevel,jdbcType=REAL}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
