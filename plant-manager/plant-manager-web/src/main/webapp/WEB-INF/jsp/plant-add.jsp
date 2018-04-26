@@ -6,17 +6,17 @@
 	<form id="itemAddForm" class="itemForm" method="post">
 	    <table cellpadding="5">
 	        <tr>
-	            <td>商品类目:</td>
+	            <td>植物类型:</td>
 	            <td>
 	            	<a href="javascript:void(0)" class="easyui-linkbutton selectItemCat">选择类目</a>
-	            	<input type="hidden" name="cid" style="width: 280px;"></input>
+	            	<input type="hidden" name="typeid" style="width: 280px;"></input>
 	            </td>
 	        </tr>
 	        <tr>
-	            <td>商品标题:</td>
-	            <td><input class="easyui-textbox" type="text" name="title" data-options="required:true" style="width: 280px;"></input></td>
+	            <td>植物名称:</td>
+	            <td><input class="easyui-textbox" type="text" name="plantname" data-options="required:true" style="width: 280px;"></input></td>
 	        </tr>
-	        <tr>
+	        <!-- <tr>
 	            <td>商品卖点:</td>
 	            <td><input class="easyui-textbox" name="sellPoint" data-options="multiline:true,validType:'length[0,150]'" style="height:60px;width: 280px;"></input></td>
 	        </tr>
@@ -54,7 +54,7 @@
 	        	<td>
 	        		
 	        	</td>
-	        </tr>
+	        </tr> -->
 	    </table>
 	    <input type="hidden" name="itemParams"/>
 	</form>
@@ -64,7 +64,7 @@
 	</div>
 </div>
 <script type="text/javascript">
-	var itemAddEditor ;
+	/* var itemAddEditor ;
 	//页面初始化完毕后执行此方法
 	$(function(){
 		//创建富文本编辑器
@@ -74,7 +74,7 @@
 			//根据商品的分类id取商品 的规格模板，生成规格信息。第四天内容。
 			//TAOTAO.changeItemParam(node, "itemAddForm");
 		}});
-	});
+	}); */
 	//提交表单
 	function submitForm(){
 		//有效性验证
@@ -82,10 +82,10 @@
 			$.messager.alert('提示','表单还未填写完成!');
 			return ;
 		}
-		//取商品价格，单位为“分”
+		/* //取商品价格，单位为“分”
 		$("#itemAddForm [name=price]").val(eval($("#itemAddForm [name=priceView]").val()) * 100);
 		//同步文本框中的商品描述
-		itemAddEditor.sync();
+		itemAddEditor.sync(); */
 		//取商品的规格
 		/*
 		var paramJson = [];
@@ -112,7 +112,7 @@
 		//ajax的post方式提交表单
 		//$("#itemAddForm").serialize()将表单序列号为key-value形式的字符串
 		alert($("#itemAddForm").serialize());
-		$.post("/item/save",$("#itemAddForm").serialize(), function(data){
+		$.post("/plant/save",$("#itemAddForm").serialize(), function(data){
 			if(data.status == 200){
 				$.messager.alert('提示','新增商品成功!');
 			}

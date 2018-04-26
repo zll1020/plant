@@ -18,6 +18,10 @@
 	<dubbo:protocol name="dubbo" port="20880"></dubbo:protocol>
 	<!-- 声明需要暴露的服务 -->
 	<!-- <dubbo:annotation package="cust.plant.manager.service"/> -->
-	<dubbo:service interface="cust.plant.manager.interfaces.PlantService"  ref="plantServiceImpl"></dubbo:service>
+	
 	<dubbo:provider delay="-1" timeout="100000" retries="0"/>
+	<dubbo:service interface="cust.plant.manager.interfaces.PlantService"  ref="plantServiceImpl"></dubbo:service>
+	<dubbo:service interface="cust.plant.manager.interfaces.PlantTypeService"  ref="plantTypeServiceImpl"></dubbo:service>
+	<dubbo:service interface="cust.plant.manager.interfaces.PlantInfoService"  ref="plantInfoServiceImpl"></dubbo:service>
+	<dubbo:service interface="cust.plant.manager.interfaces.UserPlantService"  ref="userPlantServiceImpl"></dubbo:service>
 </beans>

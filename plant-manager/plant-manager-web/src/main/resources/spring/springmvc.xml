@@ -30,6 +30,9 @@
 	<dubbo:application name="plant-manager-web"/>
 	<dubbo:registry address="zookeeper://127.0.0.1:2181"></dubbo:registry>
 	<dubbo:reference interface="cust.plant.manager.interfaces.PlantService" id="plantService"></dubbo:reference>
+	<dubbo:reference interface="cust.plant.manager.interfaces.PlantTypeService" id="plantTypeService"></dubbo:reference>
+	<dubbo:reference interface="cust.plant.manager.interfaces.PlantInfoService" id="plantInfoService"></dubbo:reference>
+	<dubbo:reference interface="cust.plant.manager.interfaces.UserPlantService" id="userPlantService"></dubbo:reference>
 	<!-- <dubbo:annotation package="cust.plant.manager.controller"/> -->
 	<!-- 视图解析器 -->
 	<bean

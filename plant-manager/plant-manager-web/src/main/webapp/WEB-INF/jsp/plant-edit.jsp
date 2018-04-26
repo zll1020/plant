@@ -4,20 +4,20 @@
 <script type="text/javascript" charset="utf-8" src="/js/kindeditor-4.1.10/lang/zh_CN.js"></script>
 <div style="padding:10px 10px 10px 10px">
 	<form id="itemeEditForm" class="itemForm" method="post">
-		<input type="hidden" name="id"/>
+		<input type="hidden" id="plantID" name="plantid"/>
 	    <table cellpadding="5">
 	        <tr>
-	            <td>商品类目:</td>
+	            <td>植物类目:</td>
 	            <td>
 	            	<a href="javascript:void(0)" class="easyui-linkbutton selectItemCat">选择类目</a>
-	            	<input type="hidden" name="cid" style="width: 280px;"></input>	
+	            	<input type="hidden" name="typeid" style="width: 280px;"></input>	
 	            </td>
 	        </tr>
 	        <tr>
-	            <td>商品标题:</td>
-	            <td><input class="easyui-textbox" type="text" name="title" data-options="required:true" style="width: 280px;"></input></td>
+	            <td>植物名称:</td>
+	            <td><input class="easyui-textbox" type="text" name="plantname" data-options="required:true" style="width: 280px;"></input></td>
 	        </tr>
-	        <tr>
+	       <!--  <tr>
 	            <td>商品卖点:</td>
 	            <td><input class="easyui-textbox" name="sellPoint" data-options="multiline:true,validType:'length[0,150]'" style="height:60px;width: 280px;"></input></td>
 	        </tr>
@@ -55,10 +55,10 @@
 	        	<td>
 	        		
 	        	</td>
-	        </tr>
+	        </tr> -->
 	    </table>
-	    <input type="hidden" name="itemParams"/>
-	    <input type="hidden" name="itemParamId"/>
+	    <!-- <input type="hidden" name="itemParams"/>
+	    <input type="hidden" name="itemParamId"/> -->
 	</form>
 	<div style="padding:5px">
 	    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">提交</a>
@@ -76,7 +76,7 @@
 			$.messager.alert('提示','表单还未填写完成!');
 			return ;
 		}
-		$("#itemeEditForm [name=price]").val(eval($("#itemeEditForm [name=priceView]").val()) * 1000);
+		/* $("#itemeEditForm [name=price]").val(eval($("#itemeEditForm [name=priceView]").val()) * 1000);
 		itemEditEditor.sync();
 		
 		var paramJson = [];
@@ -98,9 +98,13 @@
 		});
 		paramJson = JSON.stringify(paramJson);
 		
-		$("#itemeEditForm [name=itemParams]").val(paramJson);
-		
-		$.post("/rest/item/update",$("#itemeEditForm").serialize(), function(data){
+		$("#itemeEditForm [name=itemParams]").val(paramJson); */
+		var plantid = document.getElementById('plantID').value;
+		var typeid =  document.getElementById('typeid').value;
+		var plantname= document.getElementById('plantname').value;
+		var plant = {"plantid":plantid,"typeid":typeid,"plantname":plantname};
+		$.post("/plant/update",{"plant":plant}, function(data){
+			
 			if(data.status == 200){
 				$.messager.alert('提示','修改商品成功!','info',function(){
 					$("#itemEditWindow").window('close');

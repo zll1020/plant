@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<table class="easyui-datagrid" id="plantList" title="植物列表" 
+<table class="easyui-datagrid" id="itemList" title="植物列表" 
        data-options="singleSelect:false,collapsible:true,pagination:true,url:'/plant/list',method:'get',pageSize:10,toolbar:toolbar">
     <thead>
         <tr>
@@ -10,16 +10,16 @@
         </tr>
     </thead>
 </table>
-<div id="itemEditWindow" class="easyui-window" title="编辑植物" data-options="modal:true,closed:true,iconCls:'icon-save',href:'/rest/page/plant-edit'" style="width:80%;height:80%;padding:10px;">
+<div id="itemEditWindow" class="easyui-window" title="编辑植物" data-options="modal:true,closed:true,iconCls:'icon-save',href:'plant-edit'" style="width:80%;height:80%;padding:10px;">
 </div>
 <script>
 
     function getSelectionsIds(){
-    	var plantList = $("#plantList");
-    	var sels = plantList.datagrid("getSelections");
+    	var itemList = $("#itemList");
+    	var sels = itemList.datagrid("getSelections");
     	var ids = [];
     	for(var i in sels){ 
-    		ids.push(sels[i].id);
+    		ids.push(sels[i].plantid);
     	}
     	ids = ids.join(",");
     	return ids;
@@ -48,19 +48,19 @@
         	$("#itemEditWindow").window({
         		onLoad :function(){
         			//回显数据
-        			var data = $("#plantList").datagrid("getSelections")[0];
-        			data.priceView = TAOTAO.formatPrice(data.price);
+        			var data = $("#itemList").datagrid("getSelections")[0];
+        			/* data.priceView = TAOTAO.formatPrice(data.price); */
         			$("#itemeEditForm").form("load",data);
         			
-        			// 加载商品描述
-        			$.getJSON('/rest/item/query/item/desc/'+data.id,function(_data){
+        			/* // 加载商品描述
+        			$.getJSON('/rest/item/query/item/desc/'+data.plantid,function(_data){
         				if(_data.status == 200){
         					//UM.getEditor('itemeEditDescEditor').setContent(_data.data.itemDesc, false);
         					itemEditEditor.html(_data.data.itemDesc);
         				}
-        			});
+        			}); */
         			
-        			//加载商品规格
+        			/* //加载商品规格
         			$.getJSON('/rest/item/param/item/query/'+data.id,function(_data){
         				if(_data && _data.status == 200 && _data.data && _data.data.paramData){
         					$("#itemeEditForm .params").show();
@@ -87,13 +87,13 @@
         					 $("#itemeEditForm .params td").eq(1).html(html);
         				}
         			});
-        			
+        			 */
         			TAOTAO.init({
-        				"pics" : data.image,
-        				"cid" : data.cid,
-        				fun:function(node){
+        				/* "pics" : data.image, */
+        				"plantid" : data.plantid,
+        				 fun:function(node){
         					TAOTAO.changeItemParam(node, "itemeEditForm");
-        				}
+        				} 
         			});
         		}
         	}).window("open");
@@ -110,10 +110,11 @@
         	$.messager.confirm('确认','确定删除ID为 '+ids+' 的植物吗？',function(r){
         	    if (r){
         	    	var params = {"ids":ids};
-                	$.post("/rest/item/delete",params, function(data){
+                	$.post("/plant/delete",{"ids":ids}, function(data){
+                		alert(ids);
             			if(data.status == 200){
             				$.messager.alert('提示','删除植物成功!',undefined,function(){
-            					$("#plantList").datagrid("reload");
+            					$("#itemList").datagrid("reload");
             				});
             			}
             		});

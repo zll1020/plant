@@ -104,10 +104,11 @@ var TT = TAOTAO = {
     
     // 初始化选择类目组件
     initItemCat : function(data){
+    	alert("11");
     	$(".selectItemCat").each(function(i,e){
     		var _ele = $(e);
-    		if(data && data.cid){
-    			_ele.after("<span style='margin-left:10px;'>"+data.cid+"</span>");
+    		if(data && data.typeid){
+    			_ele.after("<span style='margin-left:10px;'>"+data.typeid+"</span>");
     		}else{
     			_ele.after("<span style='margin-left:10px;'></span>");
     		}
@@ -123,13 +124,13 @@ var TT = TAOTAO = {
     			    onOpen : function(){
     			    	var _win = this;
     			    	$("ul",_win).tree({
-    			    		url:'/item/cat/list',
+    			    		url:'/plant/type/list',
     			    		animate:true,
     			    		onClick : function(node){
     			    			if($(this).tree("isLeaf",node.target)){
     			    				// 填写到cid中
-    			    				_ele.parent().find("[name=cid]").val(node.id);
-    			    				_ele.next().text(node.text).attr("cid",node.id);
+    			    				_ele.parent().find("[name=typeid]").val(node.id);
+    			    				_ele.next().text(node.text).attr("typeid",node.id);
     			    				$(_win).window('close');
     			    				if(data && data.fun){
     			    					data.fun.call(this,node);

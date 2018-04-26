@@ -1,2 +1,5 @@
 cust\plant\manager\controller\PageController.class
+cust\plant\manager\controller\PlantTypeController.class
+cust\plant\manager\controller\UserPlantController.class
 cust\plant\manager\controller\PlantController.class
+cust\plant\manager\controller\PlantInfoController.class
