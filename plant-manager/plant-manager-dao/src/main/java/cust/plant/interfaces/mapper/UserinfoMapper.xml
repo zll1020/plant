@@ -7,6 +7,7 @@
     <result column="password" property="password" jdbcType="VARCHAR" />
     <result column="role" property="role" jdbcType="VARCHAR" />
     <result column="count" property="count" jdbcType="INTEGER" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -67,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    UserID, username, password, role, count
+    UserID, username, password, role, count, phone
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="cust.plant.manager.pojo.UserinfoExample" >
     select
@@ -101,9 +102,9 @@
   </delete>
   <insert id="insert" parameterType="cust.plant.manager.pojo.Userinfo" >
     insert into userinfo (UserID, username, password, 
-      role, count)
+      role, count, phone)
     values (#{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{role,jdbcType=VARCHAR}, #{count,jdbcType=INTEGER})
+      #{role,jdbcType=VARCHAR}, #{count,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cust.plant.manager.pojo.Userinfo" >
     insert into userinfo
@@ -123,6 +124,9 @@
       <if test="count != null" >
         count,
       </if>
+      <if test="phone != null" >
+        phone,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="userid != null" >
@@ -139,6 +143,9 @@
       </if>
       <if test="count != null" >
         #{count,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -166,6 +173,9 @@
       <if test="record.count != null" >
         count = #{record.count,jdbcType=INTEGER},
       </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -177,7 +187,8 @@
       username = #{record.username,jdbcType=VARCHAR},
       password = #{record.password,jdbcType=VARCHAR},
       role = #{record.role,jdbcType=VARCHAR},
-      count = #{record.count,jdbcType=INTEGER}
+      count = #{record.count,jdbcType=INTEGER},
+      phone = #{record.phone,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -197,6 +208,9 @@
       <if test="count != null" >
         count = #{count,jdbcType=INTEGER},
       </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
     </set>
     where UserID = #{userid,jdbcType=INTEGER}
   </update>
@@ -205,7 +219,8 @@
     set username = #{username,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
       role = #{role,jdbcType=VARCHAR},
-      count = #{count,jdbcType=INTEGER}
+      count = #{count,jdbcType=INTEGER},
+      phone = #{phone,jdbcType=VARCHAR}
     where UserID = #{userid,jdbcType=INTEGER}
   </update>
 </mapper>

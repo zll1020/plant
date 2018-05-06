@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import cust.plant.interfaces.mapper.PlantinfoMapper;
 import cust.plant.manager.interfaces.PlantInfoService;
-import cust.plant.manager.pojo.Plant;
 import cust.plant.manager.pojo.Plantinfo;
 import cust.plant.manager.pojo.PlantinfoExample;
 import cust.plant.manager.pojo.PlantinfoExample.Criteria;

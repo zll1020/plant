@@ -111,7 +111,6 @@
         	    if (r){
         	    	var params = {"ids":ids};
                 	$.post("/plant/delete",{"ids":ids}, function(data){
-                		alert(ids);
             			if(data.status == 200){
             				$.messager.alert('提示','删除植物成功!',undefined,function(){
             					$("#itemList").datagrid("reload");

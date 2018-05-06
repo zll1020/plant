@@ -1,31 +1,17 @@
 package cust.plant.manager.pojo;
 
 import java.io.Serializable;
-/**
- * 订单表
- * @author u
- *
- */
+
 public class Orderinfo implements Serializable{
-	/**
-	 * 订单ID
-	 */
     private Integer id;
 
-    /**
-     * 商品ID
-     */
     private Integer goodid;
 
-    /**
-     * 买方用户ID
-     */
     private Integer buyuserid;
 
-    /**
-     * 卖方用户ID
-     */
     private Integer selluserid;
+
+    private String address;
 
     public Integer getId() {
         return id;
@@ -57,5 +43,13 @@ public class Orderinfo implements Serializable{
 
     public void setSelluserid(Integer selluserid) {
         this.selluserid = selluserid;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address == null ? null : address.trim();
     }
 }

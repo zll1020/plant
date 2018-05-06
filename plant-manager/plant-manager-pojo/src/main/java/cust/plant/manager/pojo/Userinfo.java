@@ -2,71 +2,64 @@ package cust.plant.manager.pojo;
 
 import java.io.Serializable;
 
-/**
- * 用户信息表
- * 
- * @author u
- *
- */
-public class Userinfo implements Serializable {
-	/**
-	 * 用户ID
-	 */
-	private Integer userid;
-	/**
-	 * 用户名称
-	 */
-	private String username;
-	/**
-	 * 用户密码
-	 */
-	private String password;
-	/**
-	 * 用户角色
-	 */
-	private String role;
-	/**
-	 * 用户账户
-	 */
-	private Integer count;
+public class Userinfo implements Serializable{
+    private Integer userid;
 
-	public Integer getUserid() {
-		return userid;
-	}
+    private String username;
 
-	public void setUserid(Integer userid) {
-		this.userid = userid;
-	}
+    private String password;
 
-	public String getUsername() {
-		return username;
-	}
+    private String role;
 
-	public void setUsername(String username) {
-		this.username = username == null ? null : username.trim();
-	}
+    private Integer count;
 
-	public String getPassword() {
-		return password;
-	}
+    private String phone;
 
-	public void setPassword(String password) {
-		this.password = password == null ? null : password.trim();
-	}
+    public Integer getUserid() {
+        return userid;
+    }
 
-	public String getRole() {
-		return role;
-	}
+    public void setUserid(Integer userid) {
+        this.userid = userid;
+    }
 
-	public void setRole(String role) {
-		this.role = role == null ? null : role.trim();
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	public Integer getCount() {
-		return count;
-	}
+    public void setUsername(String username) {
+        this.username = username == null ? null : username.trim();
+    }
 
-	public void setCount(Integer count) {
-		this.count = count;
-	}
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role == null ? null : role.trim();
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone == null ? null : phone.trim();
+    }
 }

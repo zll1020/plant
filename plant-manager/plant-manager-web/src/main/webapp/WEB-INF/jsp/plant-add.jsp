@@ -104,7 +104,7 @@
 				"group" : group,
 				"params": ps
 			});
-		});
+		}); 
 		//把json对象转换成字符串
 		paramJson = JSON.stringify(paramJson);
 		$("#itemAddForm [name=itemParams]").val(paramJson);

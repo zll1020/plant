@@ -10,12 +10,12 @@
 	            <td>植物类目:</td>
 	            <td>
 	            	<a href="javascript:void(0)" class="easyui-linkbutton selectItemCat">选择类目</a>
-	            	<input type="hidden" name="typeid" style="width: 280px;"></input>	
+	            	<input type="hidden" id="typeid" name="typeid" style="width: 280px;"></input>	
 	            </td>
 	        </tr>
 	        <tr>
 	            <td>植物名称:</td>
-	            <td><input class="easyui-textbox" type="text" name="plantname" data-options="required:true" style="width: 280px;"></input></td>
+	            <td><input class="easyui-textbox" type="text" id="plantname" name="plantname" data-options="required:true" style="width: 280px;"></input></td>
 	        </tr>
 	       <!--  <tr>
 	            <td>商品卖点:</td>
@@ -102,8 +102,8 @@
 		var plantid = document.getElementById('plantID').value;
 		var typeid =  document.getElementById('typeid').value;
 		var plantname= document.getElementById('plantname').value;
-		var plant = {"plantid":plantid,"typeid":typeid,"plantname":plantname};
-		$.post("/plant/update",{"plant":plant}, function(data){
+		
+		$.post("/plant/update",{"plantid":plantid,"typeid":typeid,"plantname":plantname}, function(data){
 			
 			if(data.status == 200){
 				$.messager.alert('提示','修改商品成功!','info',function(){
